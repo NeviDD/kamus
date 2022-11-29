@@ -1,0 +1,48 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1>Bantuan</h1>
+    <p class="lead">Dapatkan Informasi Mengenai Website</p>
+    <p><a href="https://repositori.kemdikbud.go.id/2860/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+</div>
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="50%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Pertanyaan</th>
+                    <th>Jawaban</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Apakah font yang disupport?</td>
+                    <td>Times New Roman, Arial, Calibri.Huruf Kapital maupun huruf kecil </td>
+                </tr>
+                <tr>
+                    <td>Berapa minimum ukuran huruf yang digunakan?</td>
+                    <td>30pixel</td>
+                </tr>
+                <tr>
+                    <td>Jenis format file apa saja yang didukung?</td>
+                    <td>jpg,png,bmp</td>
+                </tr>
+                <tr>
+                    <td>Apakah dapat mendeteksi tulisan selain font yang disebutkan?</td>
+                    <td>Hasil deteksi tidak akan terjamin</td>
+                </tr>
+                <tr>
+                    <td>Apakah penerjemahan dapat berupa kalimat?</td>
+                    <td>Penerjemahan dilakukan hanya perkata dan hasil tergantung database</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

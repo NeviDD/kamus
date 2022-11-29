@@ -1,0 +1,72 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1>Fitur OCR</h1>
+    <p class="lead">Gunakan Fitur OCR Untuk Mengambil Teks Pada Gambar </p>
+    <p><a href="https://repositori.kemdikbud.go.id/2860/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+</div>
+<body>
+    <form method="POST" enctype="multipart/form-data" action="/process_image">
+        {% csrf_token %}
+        <div class="file-field input-field left">
+            <div class="btn black-text waves-effect waves-dark" style="background-color: #F5DF73">
+                Upload
+                {{ form.as_p }}
+                <button type="submit">Upload</button>
+                <img src="{{ input_image }}" width="380" height="300">Gambar Input
+                <img src=" {{urii}}" width="380" height="300">Gambar Setelah Proses
+
+                <div>
+                    <br />
+                    <p>
+                        Hasil OCR<input value="{{text}}" name="text" type="text" id="konversisunda" placeholder="Hasil OCR" class="input color" />
+                    </p>
+                </div>
+                {% for bahasa in qs %}
+                <input value="{{bahasa.Sunda_Lemes}}" type="text" id="konversisunda" placeholder="sunda" class="input color" />
+                {% endfor %}
+            </div>
+        </div>
+    </form>
+
+    <br />
+    <br />
+    <div class="container">
+        <form method="GET" action="/konversiIndonesia">
+            <table>
+                <tr>
+                    <td><input  name="textindonesia" type="text" id="Bindonesia" placeholder="indonesia" class="input" /></td>
+                    <td><button type="submit" class="btn btn-outline-primary">Terjemah</button></td>                  
+                </tr>             
+            </table>
+        </form>
+    </div>
+    <div class="container">
+        <form method="GET" action="/konversiSundaLemes">
+            <table>
+                <tr>
+                    <td><input  name="textsundalemes" type="text" id="Bindonesia" placeholder="Sunda Lemes" class="input" /></td>
+                    <td><button type="submit" class="btn btn-outline-primary">Terjemah</button></td>      
+                </tr>             
+            </table>
+        </form>
+    </div>
+    <div class="container">
+        <form method="GET" action="/konversiSundaSedang">
+            <table>
+                <tr>                
+                    <td><input  name="textsundasedang" type="text" id="Bindonesia" placeholder="Sunda Sedang" class="input" /></td>
+                    <td><button type="submit" class="btn btn-outline-primary">Terjemah</button></td>                 
+                </tr>             
+            </table>
+        </form>
+    </div>
+    <br />
+
+    
+
+
+</body>
+
+{% endblock %}
