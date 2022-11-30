@@ -54,7 +54,7 @@ print(az.labels_)
 class_mapping = {}
 #alphabets = ['S','C','E','A','I','X','V','W','B','H','Z','M','O','N','P','Q','D','U','K','J','R','Y','G','L', 'T','F']#data folder rr,my_dumped_classifer.pkl
 #alphabets = ['I','D','G','L','A','N','V','P','Z','W','K','M','S','Q','J','B','X','U','R','T','F','C','Y','H', 'O','E']#data folder characterA,classifer.pkl
-alphabets = ['P','L','I','C','V','H','Z','J','Y','X','S','W','I/L','M','J','T','B','N','U','U','O','M','L','V','K','F','W','F','Q','G','E','A','X','Y','T','K','P','C','H','R','Q','Q','R','A','S','D','R','N','F','B','M','D','D','B','M','Q','I','E','N','P','W','A','A','U','D','Z','J','G','F','B','U','G','J','Y','K','X','Z','G','X','E','O','H','R','N','O','C','T','C','K','S','G','T','H','P','I','V','Z','S','K','Y','I','O','A','A','E','T','S','E','Y','X','F','H','D','C','I/L','R','D','J','B','H','Z','W','V','W','V','O','E','M','C','G','Q','F','I/L','P','I/L']#data folder characterA,alphabet135c.pkl
+alphabets = ['P','L','I','C','V','H','Z','J','Y','X','S','W','I/L','M','J','T','B','N','U','U','O','M','L','V','K','F','W','F','Q','G','E','A','X','Y','T','K','P','C','H','R','Q','Q','R','A','S','D','R','N','F','B','M','D','D','B','M','Q','I','E','N','P','W','A','A','U','D','Z','J','G','F','B','U','G','J','Y','K','X','Z','G','X','E','O','H','R','N','O','C','T','C','K','S','G','T','H','P','I','V','Z','S','K','Y','I','O','A','A','E','T','S','E','Y','X','F','H','D','C','I','R','D','J','B','H','Z','W','V','W','V','O','E','M','C','G','Q','F','L','P','I/L']#data folder characterA,alphabet135c.pkl
 #alphabets = ['i','g','d','t','m/y','c/g','e/f','h/n/u','c/o','z','v','b/h','w','n/x','j','u','h','t','a','p','s','g/q','d/j','k','k/r','r','l','m','i/l','w','m','z','b/e/f/l','v/y','e/o','k','a','r','a/d','f/r','q','c/e','n','b/d/u','b','m','q','f','p','p','n','j']#data folder characterA,alphabet52c.pkl
 
 
@@ -136,18 +136,18 @@ def process_image(request):
             #numpay array so it can be process
             image = cv2.imdecode(np.fromstring(response, np.uint8), cv2.IMREAD_COLOR)
             gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-            # Apply Gaussian blurring and thresholding 
-
+            # Apply  thresholding 
             thresh = cv2.adaptiveThreshold(gray, 255,cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 45, 15)
             frame_buff= cv2.imencode('.jpg', thresh)[1]
             encode = b64encode(frame_buff)
-            decode = encode.decode('ascii')
-            
+            decode = encode.decode('ascii')   
             mime = "image/jpg"
             uri = "data:%s;base64,%s" % (mime, decode)
             #plt.imshow(thresh)
             #plt.show()
             #erode 
+            #Some noise reduction
+            
             img_erode = cv2.erode(thresh, np.ones((1,2), np.uint8))
             # Find contours and get bounding box for each contour
             cnts, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -173,6 +173,7 @@ def process_image(request):
                 # and apply bitwise_not because in our training data for pre-trained model
                 # the characters are black on a white background
                 crop = thresh[y:y+h, x:x+w]
+                #Inverting the image
                 crop = cv2.bitwise_not(crop)
                 # Apply padding 
                 crop = cv2.copyMakeBorder(crop, 1,1,1,1, cv2.BORDER_CONSTANT, None, 255)
