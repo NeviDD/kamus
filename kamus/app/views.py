@@ -192,7 +192,7 @@ def process_image(request):
     
                 crop = crop.reshape(1, 28*28)
                 crop = crop.astype("float32") / 255.0
-
+                print(crop)
                 #prediction
                 #prediction
 
