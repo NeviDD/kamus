@@ -39,7 +39,7 @@
     <Compile Include="class1.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="kamus\module1.py">
+    <Compile Include="kamus\testing.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="manage.py" />
