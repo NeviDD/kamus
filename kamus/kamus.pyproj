@@ -36,10 +36,10 @@
     <Compile Include="app\views.py" />
     <Compile Include="app\__init__.py" />
     <Compile Include="app\migrations\__init__.py" />
-    <Compile Include="class1.py">
+    <Compile Include="kamus\kmeans.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="kamus\testing.py">
+    <Compile Include="kamus\rgbtogray.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="manage.py" />
@@ -61,6 +61,7 @@
     <Folder Include="kamus\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="muka3.png" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="app\static\app\content\bootstrap.css" />
@@ -89,8 +90,6 @@
     <Content Include="app\templates\app\bantuan.html" />
     <Content Include="app\templates\app\fiturocr.html" />
     <Content Include="app\templates\app\layout.html" />
-    <Content Include="app\templates\app\login.html" />
-    <Content Include="app\templates\app\loginpartial.html" />
   </ItemGroup>
   <ItemGroup>
     <None Include="readme.html">

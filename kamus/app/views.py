@@ -107,7 +107,6 @@ def process_image(request):
             input_image = "data:%sbase64,%s" % (mime, encoded)
             #numpay array so it can be process
             image = cv2.imdecode(np.fromstring(response, np.uint8), cv2.IMREAD_COLOR)
-            print(image)
             gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
             gray = cv2.bilateralFilter(gray, 10, 10, 10) 
 
@@ -153,8 +152,7 @@ def process_image(request):
                 crop = thresh[y:y+h, x:x+w]
                 #Inverting the image
                 # the characters are black on a white background
-                crop = cv2.bitwise_not(crop)
-                print(crop)
+                crop = cv2.bitwise_not(crop)             
                 # Apply padding 
                 crop = cv2.copyMakeBorder(crop, 1,1,1,1, cv2.BORDER_CONSTANT, None, 255)
                 # Convert and resize image
@@ -163,7 +161,8 @@ def process_image(request):
                 #cv2.imshow('Final', crop)
                 #cv2.waitKey(0)
                 # Prepare data for prediction
-                crop= color.rgb2gray(crop)     
+                crop= color.rgb2gray(crop)   
+                print(crop)
                 crop = crop.reshape(1, 28*28)
                 crop = crop.astype("float32") / 255.0
                 #prediction
