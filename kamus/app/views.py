@@ -21,7 +21,7 @@ with open('alphabet135C.pkl', 'rb') as f:
 
 centroids= az.cluster_centers_
 
-print(az.labels_)
+
 class_mapping = {}
                                                                                                                                                             
 alphabets = ['P','L','I','C','V','H','Z','J','Y','X','S','W','I/L','M','J','T','B','N','U','U','O','M',
@@ -162,14 +162,14 @@ def process_image(request):
                 #cv2.waitKey(0)
                 # Prepare data for prediction
                 crop= color.rgb2gray(crop)   
-                print(crop)
+                
                 crop = crop.reshape(1, 28*28)
                 crop = crop.astype("float32") / 255.0
                 #prediction
                 predicted_cluster = az.predict(crop)
                 #mapping int to a-z
                 predicted_cluster = class_mapping[int(predicted_cluster)]                                                                                                                                  
-                print(predicted_cluster)  
+                 
                 huruf += predicted_cluster
                 kotak = cv2.rectangle(image, (x,y), (x+w,y+h), (0, 255, 0), 2)
                 frame_buff= cv2.imencode('.jpg', kotak)[1]
