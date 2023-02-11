@@ -13,7 +13,6 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
 import functools
 import matplotlib.pyplot as plt
-import numpy as np
 from sklearn.cluster import MiniBatchKMeans
 import tensorflow as tf
 
