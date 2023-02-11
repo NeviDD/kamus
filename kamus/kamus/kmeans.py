@@ -15,6 +15,7 @@ import functools
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.cluster import MiniBatchKMeans
+import tensorflow as tf
 
 img_folder= 'CHARACTERA'
 
@@ -50,12 +51,13 @@ plt.figure(figsize = (15,8)) # Adjusting figure size
 
 # Displaying a grid of 3x3 images
 
-""" showing dataset randomly
+"""
+#showing dataset randomly
 for i in range(1,11):
   id = np.random.randint(len(img_data))
-  image, label = tf.squeeze(img_data[id]), class_mapping[int(target_val[id])]
+  image, label = tf.squeeze(img_data[id]), [int(target_val[id])]
   plt.subplot(2,5,i)
-  plt.imshow(image, cmap='binary')
+  plt.imshow(image, cmap='gray')
   plt.title(label)
   plt.axis('off')
 
@@ -83,7 +85,7 @@ Z=kmeans.predict(img_data)
 import pickle
 #print(az)
 #save the classifier
-with open('120.pkl', 'wb') as fid:
+with open('testaja.pkl', 'wb') as fid:
    pickle.dump(az, fid)
 
 

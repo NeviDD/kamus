@@ -109,7 +109,7 @@ def process_image(request):
             image = cv2.imdecode(np.fromstring(response, np.uint8), cv2.IMREAD_COLOR)
             gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
             gray = cv2.bilateralFilter(gray, 10, 10, 10) 
-
+            
             frame_buff= cv2.imencode('.jpg', gray)[1]
             encode = b64encode(frame_buff)
             decode = encode.decode('ascii')   
@@ -134,10 +134,10 @@ def process_image(request):
             # Sort the bounding boxes from left to right, top to bottom
             # sort by Y first, and then sort by X if Ys are similar
             def compare(rect1, rect2):
-                if abs(rect1[1] - rect2[1]) <= 15:
-                    return rect1[0] - rect2[0]
-                else:
+                if abs(rect1[0] - rect2[0]) <= 15:
                     return rect1[1] - rect2[1]
+                else:
+                    return rect1[0] - rect2[0]
             boundingBoxes = sorted(boundingBoxes, key=functools.cmp_to_key(compare) )
 
             TARGET_WIDTH = 28

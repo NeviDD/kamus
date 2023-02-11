@@ -61,7 +61,6 @@
     <Folder Include="kamus\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="muka3.png" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="app\static\app\content\bootstrap.css" />
