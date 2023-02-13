@@ -24,7 +24,7 @@ centroids= az.cluster_centers_
 
 class_mapping = {}
                                                                                                                                                             
-alphabets = ['P','L','I','C','V','H','Z','J','Y','X','S','W','I/L','M','J','T','B','N','U','U','O','M',
+alphabets = ['P','L','I','C','V','H','Z','J','Y','X','S','W','L','M','J','T','B','N','U','U','O','M',
              'L','V','K','F','W','F','Q','G','E','A','X','Y','T','K','P','C','H','R','Q','Q','R','A','S',
              'D','R','N','F','B','M','D','D','B','M','Q','I','E','N','P','W','A','A','U','D','Z','J','G',                                                    #alphabets = ['S','C','E','A','I','X','V','W','B','H','Z','M','O','N','P','Q','D','U','K','J','R','Y','G','L', 'T','F']#data folder rr,my_dumped_classifer.pkl                                                                                                                                                           #alphabets = ['I','D','G','L','A','N','V','P','Z','W','K','M','S','Q','J','B','X','U','R','T','F','C','Y','H', 'O','E']#data folder characterA,classifer.pkl
              'F','B','U','G','J','Y','K','X','Z','G','X','E','O','H','R','N','O','C','T','C','K','S','G',                                                    #alphabets = ['i','g','d','t','m/y','c/g','e/f','h/n/u','c/o','z','v','b/h','w','n/x','j','u','h','t','a','p','s','g/q','d/j','k','k/r','r','l','m','i/l','w','m','z','b/e/f/l','v/y','e/o','k','a','r','a/d','f/r','q','c/e','n','b/d/u','b','m','q','f','p','p','n','j']#data folder characterA,alphabet52c.pkl
@@ -134,7 +134,7 @@ def process_image(request):
             # Sort the bounding boxes from left to right, top to bottom
             # sort by Y first, and then sort by X if Ys are similar
             def compare(rect1, rect2):
-                if abs(rect1[0] - rect2[0]) <= 15:
+                if abs(rect1[0] - rect2[0]) <= 15:       
                     return rect1[1] - rect2[1]
                 else:
                     return rect1[0] - rect2[0]
