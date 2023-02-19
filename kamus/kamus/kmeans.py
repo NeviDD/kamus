@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 from sklearn.cluster import MiniBatchKMeans
 import tensorflow as tf
 
-img_folder= 'CHARACTERA'
+img_folder= 'TulisJadi'
 
 def create_dataset(img_folder):
    
@@ -25,15 +25,16 @@ def create_dataset(img_folder):
    
     for dir1 in os.listdir(img_folder):
         for file in os.listdir(os.path.join(img_folder, dir1)):
-       
+            
             image_path= os.path.join(img_folder, dir1,  file)
-            image= cv2.imread( image_path, cv2.COLOR_BGR2RGB)        
+            image= cv2.imread( image_path, cv2.COLOR_BGR2RGB)  
+           
             data.append(image)
             class_name.append(dir1)
     return data, class_name
 
 # extract the image array and class name
-img_data, class_name =create_dataset('CHARACTERA')
+img_data, class_name =create_dataset('TulisJadi')
 
 
 target_dict={k: v for v, k in enumerate(np.unique(class_name))}
@@ -65,18 +66,40 @@ plt.show()
 """
 
 
-img_data=np.array(img_data)
+
+img_data = np.asarray(img_data).astype(np.float32)
 target_val=np.array(target_val)
 
+print(type(img_data))
 
 
 #data normalization
 img_data=img_data/255.0
 #reshape data
 img_data = img_data.reshape(len(img_data),-1)
+# elbow method
+distortions = []
+n_clusters = range(26,250)
+for k in n_clusters:
+    kmeans =MiniBatchKMeans(n_clusters=k)
+    az=kmeans.fit(img_data)
+    Z=kmeans.predict(img_data)
+    distortions.append(kmeans.inertia_)                                                
+   #print(kmeans.cluster_centers_.shape)                                                           
+plt.figure(figsize=(16,10))
+plt.plot(n_clusters, distortions, 'bx-')
+plt.xlabel('k')
+plt.ylabel('Distortion')
+plt.title('The Elbow Method showing the optimal k')
+plt.show()
+print(k,distortions)
+
+
+
+
 
 #kmeans
-n_clusters = 120
+n_clusters = 220
 kmeans =MiniBatchKMeans(n_clusters)
 az=kmeans.fit(img_data)
 Z=kmeans.predict(img_data)
@@ -84,11 +107,11 @@ Z=kmeans.predict(img_data)
 import pickle
 #print(az)
 #save the classifier
-with open('testaja.pkl', 'wb') as fid:
+with open('tulis222.pkl', 'wb') as fid:
    pickle.dump(az, fid)
 
 
-"""
+
 #mengecek isi cluster
 for i in range(0,n_clusters):
 
@@ -107,7 +130,7 @@ for i in range(0,n_clusters):
         plt.imshow(image, cmap='gray')
         plt.axis('off')
     plt.show()
-"""
+
 
 def retrieve_info(cluster_labels,target_val):
   # Initializing 
@@ -150,7 +173,7 @@ plt.show()
 
 # elbow method
 distortions = []
-n_clusters = range(52,150)
+n_clusters = range(26,150)
 for k in n_clusters:
     kmeans =MiniBatchKMeans(n_clusters=k)
     az=kmeans.fit(img_data)

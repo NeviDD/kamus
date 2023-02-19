@@ -36,6 +36,12 @@
     <Compile Include="app\views.py" />
     <Compile Include="app\__init__.py" />
     <Compile Include="app\migrations\__init__.py" />
+    <Compile Include="kamus\class1.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="kamus\class2.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="kamus\kmeans.py">
       <SubType>Code</SubType>
     </Compile>

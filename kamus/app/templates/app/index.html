@@ -12,32 +12,21 @@
         <form method="GET" action="/konversiIndonesia">
             <table>
                 <tr>
-                    <td><input value="" name="textindonesia" type="text" id="Bindonesia" placeholder="indonesia" class="input" /></td>
+                    <td><input  name="cari_kata" type="text" id="Bindonesia" placeholder="Masukkan Kata" class="input" /></td>
                     <td><button type="submit" class="btn btn-outline-primary">Terjemah</button></td>
                 </tr>
             </table>
         </form>
+        {% if search_results %}
+        <p>Hasil pencarian untuk "<strong>{{ cari_query }}</strong>":</p>
+        <ul>
+            {% for result in search_results %}
+            <li> {{ cari_query }} merupakan bahasa {{ result.results|join:", " }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
     </div>
-    <div class="container">
-        <form method="GET" action="/konversiSundaLemes">
-            <table>
-                <tr>
-                    <td><input name="textsundalemes" type="text" id="Bindonesia" placeholder="Sunda Lemes" class="input" /></td>
-                    <td><button type="submit" class="btn btn-outline-primary">Terjemah</button></td>
-                </tr>
-            </table>
-        </form>
-    </div>
-    <div class="container">
-        <form method="GET" action="/konversiSundaSedang">
-            <table>
-                <tr>
-                    <td><input name="textsundasedang" type="text" id="Bindonesia" placeholder="Sunda Sedang" class="input" /></td>
-                    <td><button type="submit" class="btn btn-outline-primary">Terjemah</button></td>
-                </tr>
-            </table>
-        </form>
-    </div>
+    
     <br />
 
     <div class="card-body">
@@ -54,7 +43,6 @@
                 <tbody>
                     {% for bahasa in queryset %}
                     <tr>
-
                         <td>{{ bahasa.id }}</td>
                         <td>{{ bahasa.Sunda_Lemes }}</td>
                         <td>{{ bahasa.Sunda_Sedang }}</td>
